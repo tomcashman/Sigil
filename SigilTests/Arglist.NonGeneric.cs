@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace SigilTests
 {
+#if !COREFX // vararg not supported
     public partial class Arglist
     {
         [TestMethod]
@@ -50,4 +51,5 @@ namespace SigilTests
             }
         }
     }
+#endif
 }

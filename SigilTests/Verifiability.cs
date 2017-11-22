@@ -20,6 +20,7 @@ namespace SigilTests
     /// and then confirm that Sigil won't allow that instruction (or instruction sequence) when in a "verified instructions only" mode.
     /// And then that the same sequence actually works in "unverified" mode.
     /// </summary>
+#if !COREFX //  corefx does not support verification
     [TestClass, System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage]
     public class Verifiability
     {
@@ -150,7 +151,11 @@ namespace SigilTests
                 d1(new int[] { 123 });
                 Assert.Fail();
             }
+#if COREFX
+            catch (InvalidProgramException) { }
+#endif
             catch (VerificationException) { }
+
 
             {
                 var asm = AssemblyBuilder.DefineDynamicAssembly(new AssemblyName("Foo"), AssemblyBuilderAccess.Run);
@@ -560,4 +565,5 @@ namespace SigilTests
             }
         }
     }
+#endif
 }

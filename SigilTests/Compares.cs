@@ -11,7 +11,7 @@ namespace SigilTests
     public partial class Compares
     {
         [TestMethod]
-        public void Equals()
+        public void Equals_()
         {
             var e1 = Emit<Func<int, int, bool>>.NewDynamicMethod();
             e1.LoadArgument(0);
